@@ -1,0 +1,230 @@
+{
+	"info": {
+		"_postman_id": "82f60bed-15ab-4718-9305-635591124d28",
+		"name": "Cat Facts API",
+		"description": "This API provides endpoints to get random cat facts",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "breeds",
+			"item": [
+				{
+					"name": "Returns a list of breeds",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//.test function is a text string that will appear in the test result output. Use this to identify your tests, and communicate the purpose of a test to anyone viewing the results.\r",
+									"\r",
+									"pm.test(\"Status test\",function(){\r",
+									" pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"//check that if the limit=1 then the data that will be retuned will be returned in the json will be also 1\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{api_url}}/breeds?limit=10",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"breeds"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						},
+						"description": "returns a list of breeds"
+					},
+					"response": []
+				}
+			],
+			"description": "Folder for breeds"
+		},
+		{
+			"name": "fact",
+			"item": [
+				{
+					"name": "Returns a random cat fact",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.response.to.be.ok;\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Fact property exists\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property(\"fact\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"The response has all properties\", () => {\r",
+									"    //parse the response json and test three properties\r",
+									"    var responseJson = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseJson).to.have.property('fact');\r",
+									"    pm.expect(responseJson).to.have.property('length');\r",
+									"   // pm.expect(responseJson.form.id).to.have.lengthOf(1);\r",
+									"});\r",
+									"\r",
+									"//check  length property is an integer \r",
+									"const jsonData = pm.response.json();\r",
+									"pm.test(\"Test data type of the response\", () => {\r",
+									"  pm.expect(jsonData).to.be.an(\"object\");\r",
+									"  pm.expect(jsonData.fact).to.be.a(\"string\");\r",
+									"  pm.expect(jsonData.length).to.be.a(\"number\");\r",
+									"\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check type\", () => {\r",
+									"    _.each(pm.response.json().response, (item) => { \r",
+									"        pm.expect(typeof item[\"fact\"]).to.be.oneOf(['object','number', 'string']);\r",
+									"    })\r",
+									"})\r",
+									"//Testing Headers\r",
+									"pm.test(\"Content-Type header is present\", () => {\r",
+									"  pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"let random = +new Date();\r",
+									"\r",
+									"pm.globals.set(\"fact\", `${random}-fact`);\r",
+									"pm.globals.set(\"length\", `${random}-82`);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{api_url}}/fact?max_length={{max_length}}",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"fact"
+							],
+							"query": [
+								{
+									"key": "max_length",
+									"value": "{{max_length}}"
+								}
+							]
+						},
+						"description": "returns a random cat fact"
+					},
+					"response": []
+				}
+			],
+			"description": "Folder for fact"
+		},
+		{
+			"name": "facts",
+			"item": [
+				{
+					"name": "Get a list of cat facts",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{api_url}}/facts?limit=2&max_length={{max_length}}",
+							"host": [
+								"{{api_url}}"
+							],
+							"path": [
+								"facts"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "2"
+								},
+								{
+									"key": "max_length",
+									"value": "{{max_length}}"
+								}
+							]
+						},
+						"description": "Get a list of cat facts"
+					},
+					"response": []
+				}
+			],
+			"description": "Folder for facts"
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "max_length",
+			"value": "140",
+			"type": "string"
+		}
+	]
+}
