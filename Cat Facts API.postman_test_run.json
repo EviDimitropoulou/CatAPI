@@ -1,0 +1,207 @@
+{
+	"id": "bd30a679-2c1b-4498-9511-5e9238e95328",
+	"name": "Cat Facts API",
+	"timestamp": "2022-11-07T13:27:26.528Z",
+	"collection_id": "0-62ba7e77-4a0b-49e0-90e7-63f1552370e4",
+	"folder_id": 0,
+	"environment_id": "0886139b-5555-4d20-98c7-899d922795a7",
+	"totalPass": 20,
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "db8484fb-ce54-4a32-b0a6-d3182c5ce6de",
+			"name": "Returns a list of breeds",
+			"url": "https://catfact.ninja/breeds?limit=10",
+			"time": 154,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200 and response type is JSON": true,
+				"Response Body is not null": true,
+				"Status test": true,
+				"Check number of keys": true,
+				"Check the results of the first breed": true,
+				"Check the Data Type": true,
+				"Response time is less than 30s": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200 and response type is JSON": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response Body is not null": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Status test": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Check number of keys": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Check the results of the first breed": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Check the Data Type": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response time is less than 30s": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				154
+			],
+			"allTests": [
+				{
+					"Status code is 200 and response type is JSON": true,
+					"Response Body is not null": true,
+					"Status test": true,
+					"Check number of keys": true,
+					"Check the results of the first breed": true,
+					"Check the Data Type": true,
+					"Response time is less than 30s": true
+				}
+			]
+		},
+		{
+			"id": "ec6c042b-5775-411a-9cc2-6901826308fa",
+			"name": "Returns a random cat fact",
+			"url": "https://catfact.ninja/fact?max_length=140",
+			"time": 141,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response Body is not null": true,
+				"Content-Type header is application/json": true,
+				"Fact property exists": true,
+				"Length property exists": true,
+				"Test data type of the response": true,
+				"Check that the value returned is less than the defined": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response Body is not null": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is application/json": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Fact property exists": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Length property exists": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Test data type of the response": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Check that the value returned is less than the defined": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				141
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response Body is not null": true,
+					"Content-Type header is application/json": true,
+					"Fact property exists": true,
+					"Length property exists": true,
+					"Test data type of the response": true,
+					"Check that the value returned is less than the defined": true
+				}
+			]
+		},
+		{
+			"id": "0e1480ff-1e73-4abf-8004-b8844ca0d33c",
+			"name": "Get a list of cat facts",
+			"url": "https://catfact.ninja/facts?limit=2&max_length=140",
+			"time": 147,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response Body is not null": true,
+				"Content-Type header is application/json": true,
+				"Content-Type header is present": true,
+				"Check data from DataType of Data table": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response Body is not null": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is application/json": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Content-Type header is present": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Check data from DataType of Data table": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				147
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response Body is not null": true,
+					"Content-Type header is application/json": true,
+					"Content-Type header is present": true,
+					"Check data from DataType of Data table": true
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 442,
+	"collection": {
+		"requests": [
+			{
+				"id": "db8484fb-ce54-4a32-b0a6-d3182c5ce6de",
+				"method": "GET"
+			},
+			{
+				"id": "ec6c042b-5775-411a-9cc2-6901826308fa",
+				"method": "GET"
+			},
+			{
+				"id": "0e1480ff-1e73-4abf-8004-b8844ca0d33c",
+				"method": "GET"
+			}
+		]
+	}
+}

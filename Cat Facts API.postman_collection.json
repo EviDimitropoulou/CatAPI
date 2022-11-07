@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "82f60bed-15ab-4718-9305-635591124d28",
+		"_postman_id": "62ba7e77-4a0b-49e0-90e7-63f1552370e4",
 		"name": "Cat Facts API",
 		"description": "This API provides endpoints to get random cat facts",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -16,14 +16,64 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"//.test function is a text string that will appear in the test result output. Use this to identify your tests, and communicate the purpose of a test to anyone viewing the results.\r",
 									"\r",
-									"pm.test(\"Status test\",function(){\r",
+									"pm.test(\"Status code is 200 and response type is JSON\",function(){\r",
 									" pm.response.to.have.status(200);\r",
+									" pm.response.to.be.json;\r",
 									"});\r",
 									"\r",
+									"pm.test(\"Response Body is not null\",function(){\r",
+									"pm.expect(responseBody).not.eql(null);\r",
+									"});\r",
 									"//check that if the limit=1 then the data that will be retuned will be returned in the json will be also 1\r",
+									"//.test function is a text string that will appear in the test result output. Use this to identify your tests, and communicate the purpose of a test to anyone viewing the results.\r",
+									"const jsonData = pm.response.json();\r",
+									"pm.test(\"Status test\",function(){\r",
+									" pm.response.to.have.status(200);\r",
+									" });\r",
 									"\r",
+									"//check if all the keys are returned\r",
+									"\r",
+									"const responseJson = pm.response.json();\r",
+									"var count = Object.keys(responseJson).length;\r",
+									"pm.test(\"Check number of keys\",function(){\r",
+									" pm.expect(count).to.be.eql(13);});\r",
+									"\r",
+									"console.log(\"The number of expected keys in the response body is: \" + count);\r",
+									"\r",
+									"\r",
+									"pm.test('Check the results of the first breed',function(){\r",
+									"    var response = pm.response.json();\r",
+									" //   var jsonData =JSON.parse(response);\r",
+									"    pm.expect(response.data[0].breed).to.eql('Abyssinian');\r",
+									"    pm.expect(response.data[0].country).to.eql('Ethiopia');\r",
+									"    pm.expect(response.data[0].origin).to.eql('Natural/Standard');\r",
+									"    pm.expect(response.data[0].coat).to.eql('Short');\r",
+									"    pm.expect(response.data[0].pattern).to.eql('Ticked');\r",
+									"});\r",
+									"pm.test('Check the Data Type',function(){\r",
+									"    var response = pm.response.json();\r",
+									"     for(var i=0; i< 10; i++){\r",
+									"          pm.expect(response.data[i].breed).to.be.a(\"string\");\r",
+									"          pm.expect(response.data[i].country).to.be.a(\"string\");\r",
+									"          pm.expect(response.data[i].origin).to.be.a(\"string\");\r",
+									"          pm.expect(response.data[i].pattern).to.be.a(\"string\");\r",
+									"        }\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 30s\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1800);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
 									""
 								],
 								"type": "text/javascript"
@@ -31,6 +81,9 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "noauth"
+						},
 						"method": "GET",
 						"header": [
 							{
@@ -72,23 +125,28 @@
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
-									"    pm.response.to.be.ok;\r",
 									"    pm.response.to.be.json;\r",
 									"});\r",
+									"\r",
+									"pm.test(\"Response Body is not null\",function(){\r",
+									"pm.expect(responseBody).not.eql(null);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"});\r",
+									"\r",
 									"\r",
 									"pm.test(\"Fact property exists\", function () {\r",
 									"    var jsonData = pm.response.json();\r",
 									"    pm.expect(jsonData).to.have.property(\"fact\");\r",
 									"});\r",
 									"\r",
-									"pm.test(\"The response has all properties\", () => {\r",
-									"    //parse the response json and test three properties\r",
-									"    var responseJson = pm.response.json();\r",
-									"    \r",
-									"    pm.expect(responseJson).to.have.property('fact');\r",
-									"    pm.expect(responseJson).to.have.property('length');\r",
-									"   // pm.expect(responseJson.form.id).to.have.lengthOf(1);\r",
+									"pm.test(\"Length property exists\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData).to.have.property(\"length\");\r",
 									"});\r",
+									"\r",
 									"\r",
 									"//check  length property is an integer \r",
 									"const jsonData = pm.response.json();\r",
@@ -98,20 +156,14 @@
 									"  pm.expect(jsonData.length).to.be.a(\"number\");\r",
 									"\r",
 									"});\r",
+									"pm.test(\"Check that the value returned is less than the defined\", () => {\r",
 									"\r",
-									"pm.test(\"Check type\", () => {\r",
-									"    _.each(pm.response.json().response, (item) => { \r",
-									"        pm.expect(typeof item[\"fact\"]).to.be.oneOf(['object','number', 'string']);\r",
-									"    })\r",
-									"})\r",
-									"//Testing Headers\r",
-									"pm.test(\"Content-Type header is present\", () => {\r",
-									"  pm.response.to.have.header(\"Content-Type\");\r",
+									"  pm.expect(jsonData.length).to.be.lessThan(140);\r",
+									"\r",
 									"});\r",
 									"\r",
-									"pm.test(\"Content-Type header is application/json\", () => {\r",
-									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
-									"});\r",
+									"\r",
+									"\r",
 									""
 								],
 								"type": "text/javascript"
@@ -121,21 +173,23 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-									"let random = +new Date();\r",
-									"\r",
-									"pm.globals.set(\"fact\", `${random}-fact`);\r",
-									"pm.globals.set(\"length\", `${random}-82`);"
+									"//pm.globals.set(\"fact\", `${random}-user`);\r",
+									"pm.globals.set(\"length\", 40);"
 								],
 								"type": "text/javascript"
 							}
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "noauth"
+						},
 						"method": "GET",
 						"header": [
 							{
 								"key": "Accept",
-								"value": "application/json"
+								"value": "application/json",
+								"disabled": true
 							}
 						],
 						"url": {
@@ -165,6 +219,54 @@
 			"item": [
 				{
 					"name": "Get a list of cat facts",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response Body is not null\",function(){\r",
+									"pm.expect(responseBody).not.eql(null);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"});\r",
+									"pm.test(\"Content-Type header is present\", () => {\r",
+									"  pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"});\r",
+									"\r",
+									"//check that the data table is equal to limit \r",
+									"pm.test('Check data from DataType of Data table',function(){\r",
+									"    var response = pm.response.json();\r",
+									"    var limit=2;\r",
+									"    \r",
+									" //  var jsonData =JSON.parse(response);\r",
+									"//  pm.expect(response.data[0].breed).to.eql('Abyssinian');\r",
+									"\r",
+									"  \r",
+									"        for(var i=0; i< limit; i++){\r",
+									"         var counter=0;\r",
+									"          pm.expect(response.data[i].fact).to.be.a(\"string\");\r",
+									"          pm.expect(response.data[i].length).to.be.a(\"number\");\r",
+									"          counter ++;\r",
+									"            console.log(counter);\r",
+									"        }\r",
+									"         console.log(counter);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [
