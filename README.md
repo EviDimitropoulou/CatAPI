@@ -1,10 +1,10 @@
-# CatAPI
+## CatAPI
 
-# Clone Repo
+## Clone Repo
 
 git clone https://github.com/EviDimitropoulou/CatAPI.git
 
-# Set Up 
+## Set Up 
 
 1.  Import Enviroment Variables 
 2.  Import collection
