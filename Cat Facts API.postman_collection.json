@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "62ba7e77-4a0b-49e0-90e7-63f1552370e4",
-		"name": "Cat Facts API",
+		"_postman_id": "66246de6-ddfb-49ec-91bb-bc817e34c20f",
+		"name": "Cat Facts API Copy",
 		"description": "This API provides endpoints to get random cat facts",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -25,8 +25,7 @@
 									"pm.test(\"Response Body is not null\",function(){\r",
 									"pm.expect(responseBody).not.eql(null);\r",
 									"});\r",
-									"//check that if the limit=1 then the data that will be retuned will be returned in the json will be also 1\r",
-									"//.test function is a text string that will appear in the test result output. Use this to identify your tests, and communicate the purpose of a test to anyone viewing the results.\r",
+									"\r",
 									"const jsonData = pm.response.json();\r",
 									"pm.test(\"Status test\",function(){\r",
 									" pm.response.to.have.status(200);\r",
@@ -249,9 +248,6 @@
 									"    var response = pm.response.json();\r",
 									"    var limit=2;\r",
 									"    \r",
-									" //  var jsonData =JSON.parse(response);\r",
-									"//  pm.expect(response.data[0].breed).to.eql('Abyssinian');\r",
-									"\r",
 									"  \r",
 									"        for(var i=0; i< limit; i++){\r",
 									"         var counter=0;\r",
@@ -260,7 +256,6 @@
 									"          counter ++;\r",
 									"            console.log(counter);\r",
 									"        }\r",
-									"         console.log(counter);\r",
 									"});"
 								],
 								"type": "text/javascript"

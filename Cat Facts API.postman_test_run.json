@@ -1,18 +1,18 @@
 {
-	"id": "bd30a679-2c1b-4498-9511-5e9238e95328",
-	"name": "Cat Facts API",
-	"timestamp": "2022-11-07T13:27:26.528Z",
-	"collection_id": "0-62ba7e77-4a0b-49e0-90e7-63f1552370e4",
+	"id": "7d58a93b-5360-4b68-8917-4338f0d620cd",
+	"name": "Cat Facts API Copy",
+	"timestamp": "2022-11-09T10:26:29.277Z",
+	"collection_id": "0-66246de6-ddfb-49ec-91bb-bc817e34c20f",
 	"folder_id": 0,
-	"environment_id": "0886139b-5555-4d20-98c7-899d922795a7",
+	"environment_id": "bd55c945-8e22-4e51-b053-5b1fb982c8db",
 	"totalPass": 20,
 	"totalFail": 0,
 	"results": [
 		{
-			"id": "db8484fb-ce54-4a32-b0a6-d3182c5ce6de",
+			"id": "953e75a8-de22-493a-b607-88e5bd64a39e",
 			"name": "Returns a list of breeds",
 			"url": "https://catfact.ninja/breeds?limit=10",
-			"time": 154,
+			"time": 423,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -57,7 +57,7 @@
 				}
 			},
 			"times": [
-				154
+				423
 			],
 			"allTests": [
 				{
@@ -72,10 +72,10 @@
 			]
 		},
 		{
-			"id": "ec6c042b-5775-411a-9cc2-6901826308fa",
+			"id": "5a0fdadc-b9f9-4ada-89f6-62c7dabe0fe9",
 			"name": "Returns a random cat fact",
 			"url": "https://catfact.ninja/fact?max_length=140",
-			"time": 141,
+			"time": 145,
 			"responseCode": {
 				"code": 200,
 				"name": "OK"
@@ -120,7 +120,7 @@
 				}
 			},
 			"times": [
-				141
+				145
 			],
 			"allTests": [
 				{
@@ -135,7 +135,7 @@
 			]
 		},
 		{
-			"id": "0e1480ff-1e73-4abf-8004-b8844ca0d33c",
+			"id": "4e258b89-a479-4bdf-a3a4-49f70f80fad8",
 			"name": "Get a list of cat facts",
 			"url": "https://catfact.ninja/facts?limit=2&max_length=140",
 			"time": 147,
@@ -187,19 +187,19 @@
 		}
 	],
 	"count": 1,
-	"totalTime": 442,
+	"totalTime": 715,
 	"collection": {
 		"requests": [
 			{
-				"id": "db8484fb-ce54-4a32-b0a6-d3182c5ce6de",
+				"id": "953e75a8-de22-493a-b607-88e5bd64a39e",
 				"method": "GET"
 			},
 			{
-				"id": "ec6c042b-5775-411a-9cc2-6901826308fa",
+				"id": "5a0fdadc-b9f9-4ada-89f6-62c7dabe0fe9",
 				"method": "GET"
 			},
 			{
-				"id": "0e1480ff-1e73-4abf-8004-b8844ca0d33c",
+				"id": "4e258b89-a479-4bdf-a3a4-49f70f80fad8",
 				"method": "GET"
 			}
 		]
